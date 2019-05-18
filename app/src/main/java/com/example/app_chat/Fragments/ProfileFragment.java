@@ -153,6 +153,7 @@ public class ProfileFragment extends Fragment {
                     pd.dismiss();
                 }
             });
+
         } else {
             Toast.makeText(getContext(), "No image selected", Toast.LENGTH_SHORT).show();
         }

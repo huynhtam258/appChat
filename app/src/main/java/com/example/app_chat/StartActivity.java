@@ -21,7 +21,7 @@ public class StartActivity extends AppCompatActivity {
 
         firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
 
-        //check if user is null
+        //check if user is null- auto start if there is an account that had loged in
         if (firebaseUser != null){
             Intent intent = new Intent(StartActivity.this, MainActivity.class);
             startActivity(intent);
@@ -38,7 +38,7 @@ public class StartActivity extends AppCompatActivity {
 
         login = findViewById(R.id.login);
         register = findViewById(R.id.register);
-
+//buttons
         login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

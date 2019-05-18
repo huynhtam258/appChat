@@ -103,6 +103,7 @@ public class MessageActivity extends AppCompatActivity {
         userid = intent.getStringExtra("userid");
         fuser = FirebaseAuth.getInstance().getCurrentUser();
 
+        //kiểm tra dữ liệu trong chỗ nhập text
         btn_send.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -144,6 +145,8 @@ public class MessageActivity extends AppCompatActivity {
         seenMessage(userid);
     }
 
+
+    // đã xem
     private void seenMessage(final String userid){
         reference = FirebaseDatabase.getInstance().getReference("Chats");
         seenListener = reference.addValueEventListener(new ValueEventListener() {
@@ -166,6 +169,8 @@ public class MessageActivity extends AppCompatActivity {
         });
     }
 
+
+    //gửi tin nhắn
     private void sendMessage(String sender, final String receiver, String message){
 
         DatabaseReference reference = FirebaseDatabase.getInstance().getReference();
@@ -179,7 +184,7 @@ public class MessageActivity extends AppCompatActivity {
         reference.child("Chats").push().setValue(hashMap);
 
 
-        // add user to chat fragment
+        // thêm user vào fragment
         final DatabaseReference chatRef = FirebaseDatabase.getInstance().getReference("Chatlist")
                 .child(fuser.getUid())
                 .child(userid);

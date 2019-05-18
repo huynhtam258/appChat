@@ -41,11 +41,14 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder> {
 
     @NonNull
     @Override
+    // phương thức này dùng để tạo view mới cho RecyclerView
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(mContext).inflate(R.layout.user_item, parent, false);
         return new UserAdapter.ViewHolder(view);
     }
 
+
+    // phương thức này dùng để gắn data và view.
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
 
@@ -65,17 +68,21 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder> {
 
         if (ischat){
             if (user.getStatus().equals("online")){
+                //online
                 holder.img_on.setVisibility(View.VISIBLE);
                 holder.img_off.setVisibility(View.GONE);
             } else {
+                //offline
                 holder.img_on.setVisibility(View.GONE);
                 holder.img_off.setVisibility(View.VISIBLE);
             }
         } else {
+            //ẩn đi
             holder.img_on.setVisibility(View.GONE);
             holder.img_off.setVisibility(View.GONE);
         }
 
+        //click vào để mở nội dung chat
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -91,6 +98,8 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder> {
         return mUsers.size();
     }
 
+
+    //tùy chỉnh một view
     public  class ViewHolder extends RecyclerView.ViewHolder{
 
         public TextView username;

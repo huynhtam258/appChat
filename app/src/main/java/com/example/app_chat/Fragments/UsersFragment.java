@@ -52,6 +52,8 @@ public class UsersFragment extends Fragment {
 
         readUsers();
 
+
+        //tìm kiếm users
         search_users = view.findViewById(R.id.search_users);
         search_users.addTextChangedListener(new TextWatcher() {
             @Override
@@ -73,6 +75,8 @@ public class UsersFragment extends Fragment {
         return view;
     }
 
+
+    //tìm kiếm user
     private void searchUsers(String s) {
 
         final FirebaseUser fuser = FirebaseAuth.getInstance().getCurrentUser();

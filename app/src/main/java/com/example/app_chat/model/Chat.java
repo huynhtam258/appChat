@@ -2,10 +2,10 @@ package com.example.app_chat.model;
 
 public class Chat {
 
-    private String sender;
-    private String receiver;
-    private String message;
-    private boolean isseen;
+    private String sender; //người gửi
+    private String receiver; //người nhận
+    private String message; //tin nhắn
+    private boolean isseen; //xem
 
     public Chat(String sender, String receiver, String message, boolean isseen) {
         this.sender = sender;

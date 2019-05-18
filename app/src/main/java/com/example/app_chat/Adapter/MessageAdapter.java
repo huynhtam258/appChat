@@ -45,7 +45,7 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.ViewHold
             return new MessageAdapter.ViewHolder(view);
         }
     }
-
+    //gắn data vào view
     @Override
     public void onBindViewHolder(@NonNull MessageAdapter.ViewHolder holder, int position) {
 
@@ -58,7 +58,9 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.ViewHold
         } else {
             Glide.with(mContext).load(imageurl).into(holder.profile_image);
         }
-
+        System.out.println("noi dung position: "+position);
+        System.out.println("noi dung chat"+mChat.size());
+        System.out.println("noi dung chat trong Chat"+ mChat);
         if (position == mChat.size()-1){
             if (chat.isIsseen()){
                 holder.txt_seen.setText("Seen");
@@ -76,6 +78,7 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.ViewHold
         return mChat.size();
     }
 
+    //tùy chỉnh một view
     public  class ViewHolder extends RecyclerView.ViewHolder{
 
         public TextView show_message;

@@ -34,7 +34,7 @@ public class ChatsFragment extends Fragment {
     private UserAdapter userAdapter;
     private List<User> mUsers ;
 
-    FirebaseUser fuser;
+    FirebaseUser fuser; //user trong firebase;
     DatabaseReference reference;
 
     private List<Chatlist> usersList;
@@ -46,7 +46,7 @@ public class ChatsFragment extends Fragment {
 
         recyclerView = view.findViewById(R.id.recycler_view);
         recyclerView.setHasFixedSize(true);
-        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+        recyclerView.setLayoutManager(new LinearLayoutManager(getContext())); //hiện thị danh sách theo chiều dọc
 
         fuser = FirebaseAuth.getInstance().getCurrentUser();
 
@@ -57,6 +57,8 @@ public class ChatsFragment extends Fragment {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 usersList.clear();
+
+                //add các chat list vào danh sách chat
                 for (DataSnapshot snapshot : dataSnapshot.getChildren()){
                     Chatlist chatlist = snapshot.getValue(Chatlist.class);
                     usersList.add(chatlist);
@@ -73,16 +75,20 @@ public class ChatsFragment extends Fragment {
 
         updateToken(FirebaseInstanceId.getInstance().getToken());
 
-
+        //trả ra view
         return view;
     }
 
+
+    //cập nhật token
     private void updateToken(String token){
         DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Tokens");
         Token token1 = new Token(token);
         reference.child(fuser.getUid()).setValue(token1);
     }
 
+
+    //danh sách chat
     private void chatList() {
         mUsers = new ArrayList<>();
         reference = FirebaseDatabase.getInstance().getReference("Users");
@@ -93,6 +99,7 @@ public class ChatsFragment extends Fragment {
                 for (DataSnapshot snapshot : dataSnapshot.getChildren()){
                     User user = snapshot.getValue(User.class);
                     for (Chatlist chatlist : usersList){
+                        //nếu user id trên máy == idlistchat
                         if (user.getId().equals(chatlist.getId())){
                             mUsers.add(user);
                         }
